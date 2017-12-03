@@ -10,6 +10,8 @@ public class Main {
         int[] mess = new int[]{0, 1};
         if (n < 2)
             return mess[n];
-        return fibonacci(n - 2) + fibonacci(n - 1);
+        for (int i = 2; i <= n; ++i)
+            mess[i % 2] = mess[0] + mess[1];
+        return mess[n%2];
     }
 }
