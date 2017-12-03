@@ -1,16 +1,22 @@
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(commonDiv(sc.nextInt(), sc.nextInt()));
+        long timeStart = System.currentTimeMillis();
+        System.out.println(commonDiv(new BigInteger("99999999999999999999999"), new BigInteger("231242143472346235462735422")));
+        long timeFinish = System.currentTimeMillis();
+        System.out.println(timeFinish - timeStart + " ms");
     }
 
-    public static int commonDiv(int a, int b) {
-        if (a == 0)
-            return b;
-        if (b == 0)
-            return a;
-        return a > b ? commonDiv(a % b, b) : commonDiv(a, b % a);
+    public static BigInteger commonDiv(BigInteger a, BigInteger b) {
+        while (true) {
+            if (a.equals(BigInteger.ZERO)) return b;
+            if (b.equals(BigInteger.ZERO)) return a;
+            if (a.compareTo(b)>=0)
+                a = a.mod(b);
+            else
+                b = b.mod(a);
+        }
     }
 }
